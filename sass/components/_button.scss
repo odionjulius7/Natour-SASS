@@ -1,0 +1,92 @@
+/* btn: styles related to btns and pseudo-elements
+      e.g is :active, :link, :hover
+  */
+
+/* link is a special state of a selector(anchor element) */
+.btn {
+  /*************************************************************/
+  // the link state is just referring to the btn being a link button and notin more
+  //  the visited state is the effect that u make for the user to know that he has visited that link before/clicked on the btn before
+  /*************************************************************/
+  &,
+  &:link,
+  &:visited {
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 1.5rem 4rem; /* short cut of padding 15px is Y(top bottom)and 40px is X(left right) */ /* measured base document root fontSize (html 10px) */
+    display: inline-block;
+    border-radius: 10rem; /* measured base document root fontSize (html 10px) */
+    transition: all 0.2s; /* all transition and time in general not selective */
+    font-size: $default-font-size; /* measured base document root fontSize (html 10px) */
+
+    // little change to button element
+    border: none;
+    cursor: pointer;
+  }
+
+  &:hover {
+    /* pushing it up is (like when we push left which is negative -)  */
+    transform: translateY(-0.3rem);
+    /*************************************************************/
+    //  the 1st is 0px which is X-left and right (-left, +right) the 2nd is Y-up and down(-up, +10px down
+    //   the 3rd is the blurry look(20px).
+    //   while the 4th is color and alpha/opacity
+    /*************************************************************/
+    box-shadow: 0 1rem 2rem rgba($color-black, 0.2);
+  }
+
+  &:active,
+  &:focus {
+    outline: none;
+    /*************************************************************/
+    //  The active state is the state at which the button is click(at this moment the
+    //   effect u made will only affect the btn when
+    //   u click the btn and not when u've not clicked it
+    /*************************************************************/
+    transform: translateY(
+      -1px
+    ); /* WHEN WE CLICK IT WILL GO DOWN AND THEN 1PX UP. WHY? THIS IS REFLECTING THE LINK/BTN STAGE AND NT THE :HOVER STAGE*/
+    box-shadow: 0 0.5rem 0.5rem rgba($color-black, 0.2);
+  }
+
+  &--white {
+    background-color: $color-white;
+    color: $color-grey-dark;
+  }
+
+  &--animated {
+    animation: moveInBottom 0.5s ease-out 0.75s; /* last one is delay time*/
+    animation-fill-mode: backwards;
+    /* helps solve the 0% stage mode that didn't take effect when the site loaded*/
+  }
+
+  &--green {
+    background-color: $color-primary-light;
+    color: $color-white;
+  }
+}
+
+.btn-text {
+  &:link,
+  &:visited {
+    font-size: $default-font-size;
+    color: $color-primary;
+    display: inline-block; // helps us make use of the margin/padding that box-model offers
+    text-decoration: none;
+    border-bottom: 1px solid $color-primary; // using border-bottom: helps use space the text and the underline;
+    padding: 3px; // all small px size does not really affect/changes when the root font changes
+    transition: all 0.2s; // when u use transform, translate or any animation
+  }
+
+  &:hover {
+    background-color: $color-primary;
+    color: $color-white;
+    box-shadow: 0 1rem 2rem rgba($color-black, 0.15);
+    transform: translateY(-2px);
+  }
+
+  &:active {
+    box-shadow: 0 0.5rem 1rem rgba($color-black, 0.15);
+    transform: translateY(0px);
+  }
+}

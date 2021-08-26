@@ -1,0 +1,74 @@
+@mixin clearfix {
+  &::after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+
+@mixin absCenter {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+// MeEDIA QUERY MANAGER
+
+/*
+// BREAKPOINTS
+
+0-600px:       PHONE
+600px-900px:   TABLET PORTRAIT 
+900px-1200px:   TABLET LANDSCAPE 
+[1200px-1800px]: IS WHERE OUR NORMAL STYLES APPLY
+1800px + :   BIG DESKTOP 
+
+*/
+// @mixin respond-phone {
+//   // we can do it like dis and then replace the content with the stylings we want
+//   @media (max-width: 600px) {
+//     @content;
+//   }
+// }
+
+/*
+$breakpoint argumentchoice:
+-phone
+-tab-port
+-tab-land
+-big-desktop
+*/
+
+/*
+  ORDER OF MEDIA QUERY 
+  BASE + TYPOGRAPHY > GENERAL LAYOUT + GRID > PAGE LAOUT + COMPONENTS
+*/
+
+// simplify the write-up
+// em in this media query is fron the browser's font size and not the 10px we specify in html{}
+@mixin respond($breakpoint) {
+  @if $breakpoint == phone {
+    @media (max-width: 37.5em) {
+      @content; // if phone the content affect phone
+    } //600px(600px/16px)
+  }
+
+  @if $breakpoint == tab-port {
+    @media (max-width: 56.25em) {
+      @content; // if tab-port the content affect tab-port
+    } //900px: (900px/16px) = 56.25
+  }
+
+  @if $breakpoint == tab-land {
+    @media (max-width: 75em) {
+      @content; // if tab-land the content affect tab-land
+    } //1200px: (900px/16px) = 75
+  }
+
+  @if $breakpoint == big-desktop {
+    @media (min-width: 112.5em) {
+      @content; // if big-desktop the content affect big-desktop
+    } //1800px: (1800px/16px) = 112.5
+  }
+}

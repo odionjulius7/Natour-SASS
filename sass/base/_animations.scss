@@ -1,0 +1,64 @@
+/*************************************************************/
+//  Creating An Animation In CSS */
+//  make use of keyframes and then name the effect/animatiom
+//  moveInLeft is moving from left to the normal position
+/*************************************************************/
+@keyframes moveInLeft {
+  /* starting point/ before the animation starts */
+  0% {
+    opacity: 0; /* it won't be visible/show anything when on this stage*/
+    transform: translateX(-10rem);
+    /* At the this stage it should be pushed to the left at 100px(-100px is left, + is push to the right )*/
+  }
+
+  /* any stage after the animation has started */
+  80% {
+    transform: translateX(1.7rem);
+    /* here after it(animation has started when it get to 80%(position) stage it should push the element to the right 10px */
+  }
+
+  /* stage at which the animation stops */
+  100% {
+    opacity: 1; /* it becomes be visible/show something when on this stage*/
+    transform: translateX(0);
+  }
+}
+
+/*************************************************************/
+/* Creating An Animation In CSS */
+/* make use of keyframes and then name the effect/animatiom */
+/* moveInRight is moving from right to the normal position */
+/*************************************************************/
+@keyframes moveInRight {
+  /* starting point/ before the animation starts */
+  0% {
+    opacity: 0; /* it won't be visible/show anything when on this stage*/
+    transform: translateX(10rem);
+    /* At the this stage it should be pushed to the left at 100px(-100px is left, + is push to the right )*/
+  }
+
+  /* any stage after the animation has started */
+  80% {
+    transform: translateX(-1rem);
+    /* here after it(animation has started when it get to 80%(position) stage it should push the element to the right 10px */
+  }
+
+  /* stage at which the animation stops */
+  100% {
+    opacity: 1; /* it becomes be visible/show something when on this stage*/
+    transform: translateX(0);
+  }
+}
+
+@keyframes moveInBottom {
+  /* starting point/ before the animation starts */
+  0% {
+    opacity: 0;
+    transform: translateY(3rem);
+  }
+  /* stage at which the animation stops */
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}

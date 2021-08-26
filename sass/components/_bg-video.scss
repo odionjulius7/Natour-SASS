@@ -1,0 +1,16 @@
+.bg-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: -1; // for everything on top should be seen/ have dominate visibility over the video
+  opacity: 0.15; // for it to be less visible dan the others
+  overflow: hidden; // if anythin is overshodwing the parent ctner should hide
+
+  &__content {
+    height: 100%;
+    width: 100%;
+    object-fit: cover; // similar to backgroung-size: cover; were you cover the parent container with d img & also be used for img
+  }
+}

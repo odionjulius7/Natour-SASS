@@ -1,0 +1,81 @@
+.header {
+  height: 95vh;
+  background-image: linear-gradient(
+      to right bottom,
+      rgba($color-primary-light, 0.8),
+      rgba($color-primary-light, 0.8)
+    ),
+    url(../img/hero.jpg);
+  background-size: cover;
+  background-position: top;
+  position: relative;
+
+  -webkit-clip-path: polygon(0 0, 100% 0%, 100% 75vh, 0% 100%); // all browsers
+  clip-path: polygon(0 0, 100% 0%, 100% 75vh, 0% 100%);
+  /*************************************************************/
+  //  polygon(x y, x y, x y, x y) the the x axis and y
+  //   axis of the img/box the width/height like for which
+  //   you want visible
+  //   visit: https://bennettfeely.com/clippy/
+  //   or google clippy
+  /*************************************************************/
+
+  @include respond(tab-port) {
+    -webkit-clip-path: polygon(
+      0 0,
+      100% 0%,
+      100% 85vh,
+      0% 100%
+    ); // all browsers
+    clip-path: polygon(0 0, 100% 0%, 100% 85vh, 0% 100%);
+  }
+
+  /**************************************/
+  // NESTING
+  // insteadt of .header__logo-box
+  // u can do this &__logo-box this element
+  /**************************************/
+  &__logo-box {
+    position: absolute;
+    top: 4rem; /* measured base document root fontSize (html 10px) */
+    left: 4rem; /* measured base document root fontSize (html 10px) */
+  }
+
+  &__logo {
+    height: 3.5rem;
+    /* animation-name: moveInLeft;
+          animation-duration: 1s;
+          animation-timing-function: ease-out; */
+  }
+
+  &__text-box {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    /*************************************************************/
+    //    the 50% each we made to the parent container will not center the child
+    //    we need push the child(100% space available to the child now) back 50% of the space
+    //   available to the child (which is 25% of the parent container
+    //    we use tramsform: translate
+    /*************************************************************/
+
+    transform: translate(-50%, -50%);
+    /*************************************************************/
+    //   this way when the size of screen changes from small to big it will always be centered on the parent container
+    //    which means it will always remain 50% from the left and 40% top not minding the transform: translate; cut off
+    /*************************************************************/
+
+    text-align: center; /* make any of it children to be centered */
+  }
+}
+/*************************************************************/
+// .header__logo-box {
+//   position: absolute;
+//   top: 4rem; /* measured base document root fontSize (html 10px) */
+//   left: 4rem; /* measured base document root fontSize (html 10px) */
+// }
+/*************************************************************/
+
+/* .logo:hover {
+        animation: moveInRight 1s ease-out;
+    } */

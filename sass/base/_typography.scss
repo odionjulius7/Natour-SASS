@@ -1,0 +1,101 @@
+body {
+  font-family: "Lato", sans-serif;
+  font-weight: 400;
+  /* font-size: 16px; */
+  line-height: 1.7;
+  color: $color-grey-dark;
+}
+
+.heading-primary {
+  color: $color-white;
+  text-transform: uppercase;
+  backface-visibility: hidden;
+  /**************************** backface-visibility ********************************/
+  //   this help to clear any hiccup caused by the animation(while transforming)
+  //   help to determine if the back part of the element that is transformed is visible
+  //   AND IT IS PUT INSIDE A PARENT ELEMENT
+  /*****************************************************************************/
+
+  margin-bottom: 6rem; /* measured base document root fontSize (html 10px) */
+
+  // instead of .heading-primary--main{}
+  &--main {
+    display: block;
+    font-size: 6rem; /* measured base document root fontSize (html 10px) */
+    font-weight: 400;
+    letter-spacing: 3.5rem; /* measured base document root fontSize (html 10px) */
+
+    /* for animation to work put in the tag/element u want it to affect(the name i mean) */
+    animation-name: moveInLeft;
+    animation-duration: 1s;
+    animation-timing-function: ease-out;
+    /**************************************/
+    //  other animation
+    //  animation-delay: 1.5s;
+    //  animation-iteration-count: 2;
+    /**********************************/
+
+    @include respond(phone) {
+      letter-spacing: 1rem;
+      font-size: 5rem;
+    }
+  }
+
+  &--sub {
+    display: block;
+    font-size: 2rem; /* measured base document root fontSize (html 10px) */
+    font-weight: 700; /** the font size determines which weight is needed */
+    letter-spacing: 1.75rem; /* measured base document root fontSize (html 10px) */
+
+    animation: moveInRight 1s ease-out; /* you can abbreviate it like this */
+
+    @include respond(phone) {
+      letter-spacing: 0.5rem;
+    }
+  }
+}
+
+.heading-secondary {
+  font-size: 3.5rem;
+  text-transform: uppercase;
+  font-weight: 700;
+  background-image: linear-gradient(
+    to right,
+    $color-primary-light,
+    $color-primary-dark
+  );
+
+  // help keep this color that's more than the content width to be in the exact width with the cont
+  display: inline-block; // this helps reduce the backgrnd img/color to not full the entire width but stop where the text stopped
+  -webkit-background-clip: text; // this clip the img/color to fit into the text and the text over shadows it
+  color: transparent; // help us see the color clip on the backgrd of text as if it is the color of the text itself
+  letter-spacing: 0.2rem; // 0.2rem is 2px
+  transition: all 2s; // always set the transitioning time of our transform effect
+
+  @include respond(tab-port) {
+    font-size: 3rem;
+  }
+
+  @include respond(phone) {
+    font-size: 2.5rem;
+  }
+
+  &:hover {
+    transform: skewY(2deg) skewX(15deg) scale(1.1);
+    text-shadow: 0.5rem 1rem 2rem rgba($color-black, 0.2); // x axis, y axis, blur and color
+  }
+}
+
+.heading-tertiary {
+  font-size: $default-font-size;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.paragraph {
+  font-size: $default-font-size;
+
+  &:not(:last-child) {
+    margin-bottom: 3rem;
+  }
+}

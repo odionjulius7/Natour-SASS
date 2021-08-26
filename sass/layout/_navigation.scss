@@ -1,0 +1,195 @@
+.navigation {
+  &__checkbox {
+    // note: you can't style checkbox radio an other likes
+    display: none;
+  }
+
+  &__button {
+    background-color: $color-white;
+    height: 7rem;
+    width: 7rem;
+    position: fixed;
+    top: 6rem;
+    right: 6rem;
+    border-radius: 50%;
+    z-index: 2000;
+    box-shadow: 0 1rem 3rem rgba($color-black, 0.1);
+    text-align: center;
+    cursor: pointer;
+
+    @include respond(tab-port) {
+      top: 4rem;
+      right: 4rem;
+    }
+
+    @include respond(phone) {
+      top: 3rem;
+      right: 3rem;
+    }
+  }
+
+  &__background {
+    height: 6rem;
+    width: 6rem;
+    border-radius: 50%;
+    position: fixed;
+    top: 6.5rem;
+    right: 6.5rem;
+    background-image: radial-gradient(
+      $color-primary-light,
+      $color-primary-dark
+    ); // this colr start from the middle den spread outward
+    // while linear-gradient start either right or left to the other side
+
+    z-index: 1000; // a very high z-index: will nolify others and make it visible above all;
+    transition: transform 0.8s;
+    // transform: scale(80);
+
+    @include respond(tab-port) {
+      top: 4.5rem;
+      right: 4.5rem;
+    }
+
+    @include respond(phone) {
+      top: 3.5rem;
+      right: 3.5rem;
+    }
+  }
+
+  &__nav {
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1500;
+
+    opacity: 0;
+    width: 0; // only opacity can't make totally invisible, with the 0% of th width
+    // applied the links will none show n won't affect the backround and cursor pointer will not have effect
+
+    transition: all 0.8s;
+  }
+
+  &__list {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    list-style: none;
+    text-align: center;
+    width: 100%;
+  }
+
+  &__item {
+    margin: 1rem;
+  }
+
+  &__link {
+    &:link,
+    &:visited {
+      display: inline-block; // animations works well on block element/box model just as spacing does
+      font-size: 3rem;
+      font-weight: 300;
+      padding: 1rem 2rem;
+      color: $color-white;
+      text-decoration: none;
+      text-transform: uppercase;
+      background-image: linear-gradient(
+        129deg,
+        transparent 0%,
+        transparent 50%,
+        $color-white 50%
+      );
+      background-size: 230%;
+      transition: all 0.2s;
+    }
+
+    &:hover,
+    &:active {
+      background-position: 100%;
+      color: $color-primary;
+      transform: translateX(1rem);
+    }
+
+    span {
+      margin-right: 1.5rem;
+      display: inline-block; // animations works well on block element/box model just as spacing does
+    }
+  }
+
+  // note: u can't directly style a radio or check-box but can make it invisible and
+  //   then style the class give to it to your own taste
+  &__checkbox:checked ~ &__background {
+    transform: scale(
+      80
+    ); // when we click on the class checkbox element the direct or
+    // general sibling selector affect the navigation__background takes up the effect of :checked styling here
+    // which is to scale the backgr-color to 80 or cover the whole width
+  }
+
+  // same thing here sibling selector take effect when u check thw checkbox
+  &__checkbox:checked ~ &__nav {
+    opacity: 1;
+    width: 100%;
+  }
+
+  //ICON
+  &__icon {
+    position: relative;
+    margin-top: 3.5rem;
+
+    &,
+    &::before,
+    &::after {
+      // WE ARE MAKING A LINE FOR EACH ELEMENT, NAVIGATION_ICON, ::BEFORE & ::AFTER PSEUDO ELEMENT
+      // ::before&::after PSEUDO ELEMENT ARE USED TO CREATE CONTENT THAT ARE NOT PRESENT/AVAILABLE IN HTML
+      width: 3rem;
+      height: 2px; // we use 2px cos we don't want it to change even when the base font size(rem) changes
+      background-color: $color-grey-dark3;
+      display: inline-block;
+    }
+
+    // always set the content of the ::after & ::before pseudo element to wat u want mostly empty
+    // and the display property
+    &::before,
+    &::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      transition: all 0.2s;
+    }
+
+    &::before {
+      top: -0.8rem;
+    }
+
+    &::after {
+      top: 0.8rem;
+    }
+  }
+
+  //  hover over the button and the animation effect takes plays
+  &__button:hover &__icon::before {
+    top: -1rem;
+  }
+
+  &__button:hover &__icon::after {
+    top: 1rem;
+  }
+
+  //   editting the icon button
+  //   we use the sibling (+) selector to make effect on the button's child(icon) when the checkbox is :checked
+  &__checkbox:checked + &__button &__icon {
+    background-color: transparent;
+  }
+
+  &__checkbox:checked + &__button &__icon::before {
+    top: 0;
+    transform: rotate(135deg); // (180deg - 45deg)
+  }
+
+  &__checkbox:checked + &__button &__icon::after {
+    top: 0;
+    transform: rotate(-135deg); // (180deg - 45deg)
+  }
+}

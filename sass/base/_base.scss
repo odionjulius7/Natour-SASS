@@ -1,0 +1,80 @@
+/* for general resetting / universal selector */
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box; /* border-box remove every padding and margin added to the height and width of any box */
+}
+
+/*************************************************************/
+// JUST ASSUME IN MEDIA QUERY OF PHONE VIEWPORT
+//   WE CHANGE THE ROOT FONT_SIZE(HTML) THE ALL FONT AND LENGHT SIZING BECOMES RESPONSIVE
+//   IN RELATION TO THE FONT OF THE ROOT BECOS OF D REM WE USE
+
+//   html {
+//       font-size: 6px;
+//   }
+/*************************************************************/
+
+// html {
+/* 
+        rem are measure relative to THE DOCUMENT 
+        ROOT FONT-SIZE: not minding if it is lenght or font-sizing 
+        all are measured base on the root html font-size
+      */
+// font-size: 10px; // here is what 1rem is
+/*************************************************************/
+// note: the html font size is 10px measuring
+// lenght(e.g padding) will be using rem to
+// multiply 10px to get what px
+// u wan to get at reponsive breakpoint
+/*************************************************************/
+// }
+
+/*************************************************************/
+// OR
+
+html {
+  // 62.5% is 10px which equate to 1rem
+  font-size: 62.5%; // here is what 1rem is
+  //   the default browser fontSize is 16
+  //       a more flexible way to set up ur root fontSize is to do this way
+
+  //  10/16px = 0.625
+  //   that i percentage is 0.625 * 100% = 62.5
+  //    0.625 * 16px = 10px
+
+  // @include respond-phone {
+  //   font-size: 50%;
+  // }
+  // OR
+
+  // Note: when using max width start with the big width and down to he smaller ones
+  // that way the last one which is the smaller width takes precedence when on or below their own breakpoint
+  @include respond(tab-land) {
+    font-size: 56.25%; // 1rem is 9px: 9px/16px = 56.25%
+  }
+
+  // when on this breakpoint tablet portrait take effect
+  @include respond(tab-port) {
+    font-size: 50%; // 1rem is 8px: 8px/16px = 50%
+  }
+
+  // when on this breakpoint phone take effect
+  // @include respond(phone) {
+  //   font-size: 40%;
+  // } NOT NEEDED -> TAB-PORT 50% WILL DO
+
+  // this big desktop will take effect becos when specify that
+  // only when it is above 1800px, so it won't interrupt with the smaller width
+  @include respond(big-desktop) {
+    font-size: 75%; // 1rem is 12px: 12px/16px = 50%
+  }
+}
+/*************************************************************/
+
+body {
+  padding: 3rem; /* measured base document root fontSize (html 10px) */
+  @include respond(tab-port) {
+    padding: 0;
+  }
+}
